@@ -2,6 +2,8 @@ package NJM;
 
 import javax.swing.JOptionPane; 
 
+import java.security.SecureRandom;
+
 
 public class NJM{
 
@@ -16,7 +18,6 @@ public class NJM{
     public static String query(Object text){
        return JOptionPane.showInputDialog(text);
     }
-
 
 
     public static Object[] unsafearrayAppend(Object[] array, Object value_to_append) {
@@ -92,6 +93,59 @@ public class NJM{
         temporaryHoldingArray[i] = value_to_append;
         
         return temporaryHoldingArray;
+    }
+
+    //this function generates an array
+    public static int[] generate_array(int array_length, int max_number_to_be_generated){
+
+        SecureRandom random = new SecureRandom();
+
+
+        int array[] = new int[array_length];
+        int ran;
+        int i = 0;
+
+        
+        while(i<array_length){
+
+            ran = random.nextInt(max_number_to_be_generated);
+            array[i]= ran;
+            i++;
+        }
+
+        return array;
+
+    }
+
+    
+    //this function generates a 2 dimension array
+    public static int[][] generate_2_dimensional_array(int first_array_length, int second_array_length, int first_max_number_to_be_generated, int second_max_number_to_be_generated){
+        
+        int array[][] = new int[first_array_length][second_array_length];
+
+        SecureRandom random = new SecureRandom();
+
+        
+        int ran;
+        int i = 0;
+        int j = 0;
+
+            while(i<first_array_length){
+
+                ran = random.nextInt(first_max_number_to_be_generated);
+                array[i][j] = ran;
+
+                while(j<second_array_length){
+                    ran = random.nextInt(second_max_number_to_be_generated);
+                    array[i][j] = ran;
+                    j++;
+                }
+                j=0;
+                i++;
+            }
+
+        return array;
+
     }
 
 }
